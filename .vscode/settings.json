@@ -1,0 +1,31 @@
+// These settings are for the Code Runner plugin...
+// Untested on osx and lin...
+// No debugging, but easy to use (just hit the play button!)
+//
+// To use, search for (Ctrl+Shift+X) and install the Code Runner plugin...
+
+{
+   "files.exclude": {
+      "*.class": true,
+      ".vscode": true,
+      ".git*": true,
+      "*.code-workspace": true,
+      "**/.gitkeep": true,
+      "**/*.dSYM": true,
+      "**/.DS_Store": true,
+      "README.md": true,
+   },
+
+   "workbench.editor.enablePreview": true,
+   "files.autoSave": "onWindowChange",
+   "files.hotExit": "off",
+
+   // Code Runner settings...
+   "code-runner.clearPreviousOutput": true,
+   "code-runner.saveAllFilesBeforeRun": true,
+   "code-runner.runInTerminal": true,
+   "code-runner.executorMap": {
+      "cpp": "cd $dir && C:\\MinGW\\bin\\g++ *.cpp -o build\\$fileNameWithoutExt.exe -std=c++11 -O3 -g3 -Wall -fmessage-length=0 -march=native && Start-Process cmd '/c build\\$fileNameWithoutExt.exe & pause'",
+   }
+}
+//https://github.com/formulahendry/vscode-code-runner/issues/416

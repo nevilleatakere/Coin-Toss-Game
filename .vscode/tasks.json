@@ -1,0 +1,190 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+   "tasks": [
+    {
+      "label": "Build C/C++ Application",
+      "type": "shell",
+      "group": "build",
+      "osx": { // Build Mac
+        "command": "clang++",
+        "args": [
+          "*.cpp",
+          "-o",
+          "./build/${fileBasenameNoExtension}",
+          "-std=c++11",
+          "-O3",
+          "-g3",
+          "-Wall",
+          "-fmessage-length=0",
+          "-march=native",
+          "-v"
+        ],
+      },
+      "linux": { // Build Linux
+        "command": "g++",
+        "args": [
+          "*.cpp",
+          "-o",
+          "./build/${fileBasenameNoExtension}.out",
+          "-std=c++11",
+          "-O3",
+          "-g3",
+          "-Wall",
+          "-fmessage-length=0",
+          "-march=native"
+        ]
+      },
+      "windows": { // Build Windozzze
+        "command": "g++",
+        "args": [
+          "*.cpp",
+          "-o",
+          ".\\build\\${fileBasenameNoExtension}.exe",
+          "-std=c++11",
+          "-O3",
+          "-g3",
+          "-Wall",
+          "-fmessage-length=0",
+          "-march=native"
+        ]
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Build OpenGL C/C++ Application",
+      "type": "shell",
+      "group": "build",
+      "osx": { // Build Mac OpenGL
+        "command": "clang++",
+        "args": [
+          "*.cpp",
+          "-o",
+          "./build/${fileBasenameNoExtension}",
+          "-framework",
+          "GLUT",
+          "-framework",
+          "OpenGL",
+          "-O3",
+          "-g3",
+          "-Wall",
+          "-fmessage-length=0",
+          "-march=native",
+          "-Wno-deprecated",
+          "-v"
+        ],
+      },
+      "linux": { // Build Linux OpenGL
+        "command": "g++",
+        "args": [
+          "*.cpp",
+          "-o",
+          "./build/${fileBasenameNoExtension}.out",
+          "-std=c++11",
+          "-lGL",
+          "-lglut",
+          "-O3",
+          "-g3",
+          "-Wall",
+          "-fmessage-length=0",
+          "-march=native"
+        ]
+      },
+      "windows": { // Build Windozzze OpenGL
+        "command": "g++",
+        "args": [
+          "*.cpp",
+          "-o",
+          ".\\build\\${fileBasenameNoExtension}.exe",
+          "-lglu32",
+          "-lopengl32",
+          "-lfreeglut",
+          "-O3",
+          "-g3",
+          "-Wall",
+          "-fmessage-length=0",
+          "-march=native"
+        ]
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+   {
+      "label": "Build and Run C/C++ Application",
+      "type": "shell",
+      "group": "build",
+      "dependsOn": [
+        "Build C/C++ Application"
+      ],
+      "dependsOrder": "sequence",
+      "osx": { // Run Mac
+        // With pause in external shell...
+        "command": "open ./build/${fileBasenameNoExtension}",
+        // ..or without pause in console area
+        //"command": "./build/${fileBasenameNoExtension}",
+        "args": []
+      },
+      "linux": { // Run Linux
+        // With pause in external shell...
+        "command": "lxterminal -e \"bash -c ./build/${fileBasenameNoExtension}.out && read -p 'Press [enter] to continue...'\"",
+        // ..or without pause in console area
+        //"command": "./build/${fileBasenameNoExtension}.out",
+        "args": []
+      },
+      "windows": { // Run Windozzze
+        // With pause in external shell...
+        "command": "Start-Process cmd '/c .\\build\\${fileBasenameNoExtension}.exe & pause'",
+        // ..or without pause in console area
+        //"command": ".\\build\\${fileBasenameNoExtension}.exe",
+        "args": []
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Build and Run OpenGL C/C++ Application",
+      "type": "shell",
+      "group": "build",
+      "dependsOn": [
+        "Build OpenGL C/C++ Application"
+      ],
+      "dependsOrder": "sequence",
+      "osx": { // Run Mac OpenGL
+        "command": "./build/${fileBasenameNoExtension}",
+        "args": []
+      },
+      "linux": { // Run Linux OpenGL
+        "command": "./build/${fileBasenameNoExtension}.out",
+        "args": []
+      },
+      "windows": { // Run Windozzze OpenGL
+        "command": ".\\build\\${fileBasenameNoExtension}.exe",
+        "args": []
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+  ]
+}

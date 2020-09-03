@@ -1,0 +1,14 @@
+// Place your key bindings in this file to override the defaultsauto[]
+// Note, this doesn't work becuse the designers of VSC are stupid and short-sighted...
+// https://github.com/Microsoft/vscode/issues/4504 
+
+// file is actually stored in %APPDATA%\Code\User\
+// workspace version does not work...
+[
+	{
+		"key": "alt+b",
+		"command": "workbench.action.tasks.runTask",
+		"when": "resourceExtname == .cpp",
+		"args": "Build and Run a C/C++ application"
+	}
+]
